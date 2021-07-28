@@ -9,11 +9,13 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".finalact"></activity>
-
+        <activity android:name=".aisupportactivity"
+            android:configChanges="orientation|screenSize|screenLayout"></activity>
+        <activity android:name=".finalactc" />
+        <activity android:name=".finalact" />
         <activity
             android:name=".supportactivity"
-            android:configChanges="orientation|screenSize|screenLayout"></activity>
+            android:configChanges="orientation|screenSize|screenLayout" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

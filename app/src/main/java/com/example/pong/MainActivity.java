@@ -18,11 +18,11 @@ import java.lang.reflect.Array;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 Button b;
-String text;
+String text,text1;
 ImageButton sound;
 boolean Sound=true;
-Spinner s;
-int a;
+Spinner s,s1;
+int a,a1;
 TextView t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +31,16 @@ TextView t;
         b=(Button) findViewById(R.id.button);
         sound=(ImageButton) findViewById(R.id.imageButton);
         s=(Spinner) findViewById(R.id.spinner);
-       t=(TextView)findViewById(R.id.textView3) ;
+        s1=(Spinner)findViewById(R.id.spinnermode) ;
+      // t=(TextView)findViewById(R.id.textView3) ;
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this,R.array.level, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
         s.setOnItemSelectedListener(this);
+        ArrayAdapter<CharSequence> adapter1=ArrayAdapter.createFromResource(this,R.array.Mode, android.R.layout.simple_spinner_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s1.setAdapter(adapter1);
+        s1.setOnItemSelectedListener(this);
         sound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +61,9 @@ TextView t;
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(MainActivity.this,supportactivity.class);
+                Intent it;
+                if(a1==1)
+                { it=new Intent(MainActivity.this,supportactivity.class);
                 //it.putExtra("sound",Sound);
                 int s[]=new int[2];
                 if(Sound==true)
@@ -64,7 +71,17 @@ TextView t;
                 else s[0]=0;
                     s[1]=a;
                 it.putExtra("passed",s);
-                startActivity(it);
+                startActivity(it);}
+                if(a1==2){
+                    it=new Intent(MainActivity.this,aisupportactivity.class);
+                //it.putExtra("sound",Sound);
+                int s[]=new int[2];
+                if(Sound==true)
+                    s[0]=1;
+                else s[0]=0;
+                s[1]=a;
+                it.putExtra("passed",s);
+                startActivity(it);}
 
             }
         });
@@ -77,12 +94,20 @@ TextView t;
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-         text=parent.getItemAtPosition(position).toString();
-        if(text.equals("Hard"))
-            a=2;
-        if(text.equals("Easy")) a=1;
-        // t.setText(text+a);
-
+        if(parent.getId()==R.id.spinner)
+        {
+            text = parent.getItemAtPosition(position).toString();
+            if (text.equals("Hard"))
+                a = 2;
+            if (text.equals("Easy")) a = 1;
+            // t.setText(text+a);
+        }
+        if(parent.getId()==R.id.spinnermode){
+            text1 = parent.getItemAtPosition(position).toString();
+            if (text1.equals("Computer Mode"))
+                a1 = 2;
+            if (text1.equals("Normal Mode")) a1 = 1;
+        }
     }
 
     @Override

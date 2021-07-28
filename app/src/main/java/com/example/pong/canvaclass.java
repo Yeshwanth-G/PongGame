@@ -89,7 +89,7 @@ public class canvaclass extends SurfaceView implements Runnable {
             motioncircle(15);
             pady=getHeight()-40;
             motionpad();
-            drawpad(padx,pady);
+            drawpad(padx,pady);//ircley
      canvas.drawCircle(circlex,circley,circler,whitestroke);
      if(i==0)
      {score=0;

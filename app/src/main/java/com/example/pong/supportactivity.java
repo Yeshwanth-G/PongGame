@@ -12,21 +12,25 @@ int a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        c=new canvaclass(this);
-        setContentView(c);//soundact
+        //c1=new com.example.pong.Aipaddle(this);
+        c= new canvaclass(this);
+        //soundact
                int ar[]=new int[2];
                ar =this.getIntent().getIntArrayExtra("passed");
+        setContentView(c);
         //a=getIntent().getIntExtra("level",1);
-        c.level=ar[1];
-        if(ar[0]==0)
-            c.sound=false;
-        else c.sound=true;
+
        /* if(c.newact==true)
         {
             Intent it=new Intent(supportactivity.this,finalact.class);
             it.putExtra("score",c.score);
             startActivity(it);
         }*/
+            c.level=ar[1];
+            if(ar[0]==0)
+                c.sound=false;
+            else c.sound=true;
+
     }
     @Override
     protected void onPause(){

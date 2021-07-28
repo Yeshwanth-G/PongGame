@@ -9,22 +9,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class finalact extends AppCompatActivity {
-TextView t,ts;
+public class finalactc extends AppCompatActivity {
+TextView t,ts,tap;
 Button b;
-int highscore,score;
-public static final String save="save";
+    public static final String save="save";
+int score,highscore,status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_finalact);
-       // super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_finalact);
-        score=getIntent().getIntExtra("score",0);
+        int []s=new int[2];
+        setContentView(R.layout.activity_finalactc);
+        s=getIntent().getIntArrayExtra("score");
+        status=s[0];
+        score=s[1];
         t=(TextView)findViewById(R.id.scorer);
+        tap=(TextView)findViewById(R.id.textView4);
         ts=(TextView)findViewById(R.id.highscore) ;
         b=(Button)findViewById(R.id.retry) ;
         t.setText("Your Score is:"+score);
+        if(status==0)
+            tap.setText("You Lost!!");
+        if(status==1)tap.setText("You Won");
         load();
         /*if(score>highscore) highscore=score;
         store(highscore);
@@ -32,7 +37,7 @@ public static final String save="save";
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(finalact.this,MainActivity.class);
+                Intent it=new Intent(finalactc.this,MainActivity.class);
                 startActivity(it);
                 finish();
             }
@@ -41,7 +46,7 @@ public static final String save="save";
     }
     @Override
     public void onBackPressed(){
-        Intent it=new Intent(finalact.this,MainActivity.class);
+        Intent it=new Intent(finalactc.this,MainActivity.class);
         startActivity(it);
         finish();
     }

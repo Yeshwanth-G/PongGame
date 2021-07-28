@@ -4,4 +4,8 @@
         <item>Easy</item>
         <item>Hard</item>
     </string-array>
+    <string-array name="Mode">
+        <item>Normal Mode</item>
+        <item>Computer Mode</item>
+    </string-array>
 </resources>
