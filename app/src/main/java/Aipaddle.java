@@ -30,7 +30,7 @@ public class Aipaddle extends SurfaceView implements Runnable {
     Path pad;
     Path padai;
     int aix,aispeedp=15,aispeedn=15;
-    int aiy,status;
+    int aiy,status,temp;
     public boolean sound;
     Canvas canvas;
     int circlex,circley,circler,speedx=1,speedy=1,padx,pady,score=0,i,level;
@@ -80,6 +80,7 @@ public class Aipaddle extends SurfaceView implements Runnable {
     }
 
     private void movepadai() {
+        temp=aispeedn;
         if (score >= 5 && score <= 7) aispeedn -= 5;
         if (score >= 20 && score <= 24) aispeedn -= 5;
         if ((score!=0)&&(score % 10 == 0 || score % 15 == 0)) aispeedn -=5;
@@ -90,6 +91,7 @@ public class Aipaddle extends SurfaceView implements Runnable {
         }
         if (circlex < aix-20)
         { aix -= aispeedn;
+         aispeedn=temp;
        /* if (((aix - 20) - aispeedn < 0))
             aix = aix + aispeedn;*/
     }
